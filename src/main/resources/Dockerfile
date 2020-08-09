@@ -4,9 +4,11 @@ VOLUME /tmp
 
 #ARG JAR_FILE
 
-COPY dockerdemo-0.0.1-SNAPSHOT.jar app.jar
+ADD dockerdemo-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java","-jar","app.jar"]
+RUN bash -c 'touch /app.jar'
 
 # 指定暴露端口, 这样在容器运行时可以知道应该映射哪些端口
 EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
